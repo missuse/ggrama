@@ -12,7 +12,7 @@ ggrama_all(pdb, ...)
 \item{...}{arguments passed to  \code{\link{ggrama}{ggrama}}}
 }
 \value{
-a grid of four ggplot2 figures combined using  \code{\link{cowplot}{plot_grid}}
+a grid of four ggplot2 figures combined using  \code{\link{cowplot::plot_grid}}
 }
 \description{
 Plots four types of Ramachandran diagrams in a grid from a pdb file using ggplot2 graphics
