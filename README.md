@@ -28,13 +28,13 @@ download.file("https://files.rcsb.org/download/2ADQ.pdb1.gz",
               dest = "2ADQ.pdb1.gz")
 
 #plot by type of Ramachandran diagrams
-ggrama::ggrama("2ADQ.pdb1.gz") #general type the default
+ggrama("2ADQ.pdb1.gz") #general type the default
 ```
 
 <img src="man/figures/README-example-1.png" width="100%" />
 
 ``` r
-ggrama::ggrama("2ADQ.pdb1.gz", "pre.pro") #pre-proline, additional options are glycine and proline
+ggrama("2ADQ.pdb1.gz", "pre.pro") #pre-proline, additional options are glycine and proline
 ```
 
 <img src="man/figures/README-example-2.png" width="100%" />

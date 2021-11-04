@@ -39,8 +39,8 @@ download.file("https://files.rcsb.org/download/2ADQ.pdb1.gz",
               dest = "2ADQ.pdb1.gz")
 
 #plot by type of Ramachandran diagrams
-ggrama::ggrama("2ADQ.pdb1.gz") #general type the default
-ggrama::ggrama("2ADQ.pdb1.gz", "pre.pro") #pre-proline, additional options are glycine and proline
+ggrama("2ADQ.pdb1.gz") #general type the default
+ggrama("2ADQ.pdb1.gz", "pre.pro") #pre-proline, additional options are glycine and proline
 
 #or plot all four types in a grid
 ggrama_all("2ADQ.pdb1.gz")
