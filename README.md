@@ -30,17 +30,17 @@ download.file("https://files.rcsb.org/download/2ADQ.pdb1.gz",
 ggrama("2ADQ.pdb1.gz") #general type the default
 ```
 
-<img src="man/figures/README-example-1.png" width="100%" />
+<img src="man/figures/README-example-1.png" width="50%" style="display: block; margin: auto;" />
 
 ``` r
 ggrama("2ADQ.pdb1.gz", "pre.pro") #pre-proline, additional options are glycine and proline
 ```
 
-<img src="man/figures/README-example-2.png" width="100%" />
+<img src="man/figures/README-example-2.png" width="50%" style="display: block; margin: auto;" />
 
 ``` r
 #or plot all four types in a grid
 ggrama_all("2ADQ.pdb1.gz")
 ```
 
-<img src="man/figures/README-example-3.png" width="100%" />
+<img src="man/figures/README-example2-1.png" width="100%" />

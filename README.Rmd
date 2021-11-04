@@ -30,7 +30,7 @@ devtools::install_github("missuse/ggrama")
 
 ## Example
 
-```{r example}
+```{r example, fig.width = 4,  fig.height = 4, out.width = "50%", fig.align = 'center'}
 library(ggrama)
 
 #download a pdb file
@@ -40,7 +40,10 @@ download.file("https://files.rcsb.org/download/2ADQ.pdb1.gz",
 #plot by type of Ramachandran diagrams
 ggrama("2ADQ.pdb1.gz") #general type the default
 ggrama("2ADQ.pdb1.gz", "pre.pro") #pre-proline, additional options are glycine and proline
+```
 
+
+```{r example2, fig.width = 8,  fig.height = 8}
 #or plot all four types in a grid
 ggrama_all("2ADQ.pdb1.gz")
 
