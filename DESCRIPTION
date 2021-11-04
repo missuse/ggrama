@@ -12,7 +12,9 @@ License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.1
-Depends: 
-    R (>= 3.5),
-    ggplot2 (>= 3.1)
+Depends: R (>= 3.5)
+Imports: 
+    ggplot2 (>= 3.1),
+    cowplot (>= 1.0),
+    bio3d (>= 2.4)
 LazyData: true
