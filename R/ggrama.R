@@ -133,5 +133,3 @@ ggrama <- function(pdb,
                           size = size,
                           fill = fill)
 }
-
-

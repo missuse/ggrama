@@ -1,13 +1,24 @@
+---
+output: github_document
+---
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
 
 # ggrama
 
 <!-- badges: start -->
 <!-- badges: end -->
 
-The goal of ggrama is to make it easy to plot Ramachandran diagrams from
-a pdb file using ggplot2 graphics
+The goal of ggrama is to make it easy to plot Ramachandran diagrams from a pdb file using ggplot2 graphics
 
 ## Installation
 
@@ -19,9 +30,9 @@ devtools::install_github("missuse/ggrama")
 
 ## Example
 
-``` r
+
+```{r example}
 library(ggrama)
-#> Loading required package: ggplot2
 
 #download a pdb file
 download.file("https://files.rcsb.org/download/2ADQ.pdb1.gz",
@@ -29,24 +40,10 @@ download.file("https://files.rcsb.org/download/2ADQ.pdb1.gz",
 
 #plot the four types of Ramachandran diagrams
 ggrama::ggrama("2ADQ.pdb1.gz")
-```
-
-<img src="man/figures/README-example-1.png" width="100%" />
-
-``` r
 ggrama::ggrama("2ADQ.pdb1.gz", "pre.pro")
-```
-
-<img src="man/figures/README-example-2.png" width="100%" />
-
-``` r
 ggrama::ggrama("2ADQ.pdb1.gz", "glycine")
-```
-
-<img src="man/figures/README-example-3.png" width="100%" />
-
-``` r
 ggrama::ggrama("2ADQ.pdb1.gz", "proline")
+
 ```
 
-<img src="man/figures/README-example-4.png" width="100%" />
+
