@@ -7,7 +7,7 @@
 <!-- badges: end -->
 
 The goal of ggrama is to make it easy to plot Ramachandran diagrams from
-a pdb file using ggplot2 graphics
+a pdb file using ggplot2 graphics.
 
 ## Installation
 
@@ -27,26 +27,21 @@ library(ggrama)
 download.file("https://files.rcsb.org/download/2ADQ.pdb1.gz",
               dest = "2ADQ.pdb1.gz")
 
-#plot the four types of Ramachandran diagrams
-ggrama::ggrama("2ADQ.pdb1.gz")
+#plot by type of Ramachandran diagrams
+ggrama::ggrama("2ADQ.pdb1.gz") #general type the default
 ```
 
 <img src="man/figures/README-example-1.png" width="100%" />
 
 ``` r
-ggrama::ggrama("2ADQ.pdb1.gz", "pre.pro")
+ggrama::ggrama("2ADQ.pdb1.gz", "pre.pro") #pre-proline, additional options are glycine and proline
 ```
 
 <img src="man/figures/README-example-2.png" width="100%" />
 
 ``` r
-ggrama::ggrama("2ADQ.pdb1.gz", "glycine")
+#or plot all four types in a grid
+ggrama_all("2ADQ.pdb1.gz")
 ```
 
 <img src="man/figures/README-example-3.png" width="100%" />
-
-``` r
-ggrama::ggrama("2ADQ.pdb1.gz", "proline")
-```
-
-<img src="man/figures/README-example-4.png" width="100%" />
