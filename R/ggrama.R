@@ -4,12 +4,12 @@
 #'
 #' @param pdb input pdb file location.
 #' @param type One of c("general", "glycine", "pre.pro", "proline"). String representing the type of Ramachandran diagram.
-#' @param values Numeric vector indicating the values of \code{\link{ggplot2}{scale_fill_gradientn}}.
-#' @param colors A character vector of valid color names indicating the colors for \code{\link{ggplot2}{scale_fill_gradientn}}.
+#' @param values Numeric vector indicating the values of \code{\link{ggplot2::scale_fill_gradientn}}.
+#' @param colors A character vector of valid color names indicating the colors for \code{\link{ggplot2::scale_fill_gradientn}}.
 #' @param title A string indicating the title of the plot.
-#' @param shape Shape for \code{\link{ggplot2}{geom_point}}.
-#' @param size Size for \code{\link{ggplot2}{geom_point}}.
-#' @param fill fill for \code{\link{ggplot2}{geom_point}} if supported.
+#' @param shape Shape for \code{\link{ggplot2::geom_point}}.
+#' @param size Size for \code{\link{ggplot2::geom_point}}.
+#' @param fill fill for \code{\link{ggplot2::geom_point}} if supported.
 #' @param ... currently not used
 #'
 #' @return A ggplot2 plot object
