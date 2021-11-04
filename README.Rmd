@@ -30,7 +30,6 @@ devtools::install_github("missuse/ggrama")
 
 ## Example
 
-
 ```{r example}
 library(ggrama)
 

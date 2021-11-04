@@ -21,7 +21,6 @@ devtools::install_github("missuse/ggrama")
 
 ``` r
 library(ggrama)
-#> Loading required package: ggplot2
 
 #download a pdb file
 download.file("https://files.rcsb.org/download/2ADQ.pdb1.gz",
