@@ -1,0 +1,21 @@
+citHeader("To cite ggrama in publications use:")
+
+citEntry(
+  entry    = "Manual",
+  title    = "ggrama: Ramachandran diagrams using ggplot2 graphics",
+  author   = as.person("Milan Dragicevic"),
+  year     = 2021,
+  url      = "https://github.com/missuse/ggrama",
+  textVersion = paste("Milan Dragicevic (2021), ggrama: Ramachandran diagrams using ggplot2 graphics. url = https://github.com/missuse/ggrama")
+)
+
+
+bibentry(bibtype = "Manual",
+         title = "{ggrama}: Ramachandran diagrams using ggplot2 graphics",
+         author = c(person("Milan", "Dragicevic")),
+         year = 2021,
+	 url = "https://github.com/missuse/ggrama")
+
+textVersion = paste0("Milan Dragicevic (2021),",
+"ggrama: Ramachandran diagrams using ggplot2 graphics",
+" https://github.com/missuse/ggrama")
