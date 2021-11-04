@@ -5,7 +5,7 @@
 #' @param pdb input pdb file location.
 #' @param ... arguments passed to  \code{\link{ggrama}{ggrama}}
 #'
-#' @return a grid of four ggplot2 figures combined using  \code{\link{cowplot::plot_grid}}
+#' @return a grid of four ggplot2 figures combined using  \code{\link{cowplot}{plot_grid}}
 #'
 #' @examples
 #'

@@ -27,17 +27,17 @@ ggrama(
 
 \item{type}{One of c("general", "glycine", "pre.pro", "proline"). String representing the type of Ramachandran diagram.}
 
-\item{values}{Numeric vector indicating the values of \code{\link{ggplot2::scale_fill_gradientn}}.}
+\item{values}{Numeric vector indicating the values of \code{\link{ggplot2}{scale_fill_gradientn}}.}
 
-\item{colors}{A character vector of valid color names indicating the colors for \code{\link{ggplot2::scale_fill_gradientn}}.}
+\item{colors}{A character vector of valid color names indicating the colors for \code{\link{ggplot2}{scale_fill_gradientn}}.}
 
 \item{title}{A string indicating the title of the plot.}
 
-\item{shape}{Shape for \code{\link{ggplot2::geom_point}}.}
+\item{shape}{Shape for \code{\link{ggplot2}{geom_point}}.}
 
-\item{size}{Size for \code{\link{ggplot2::geom_point}}.}
+\item{size}{Size for \code{\link{ggplot2}{geom_point}}.}
 
-\item{fill}{fill for \code{\link{ggplot2::geom_point}} if supported.}
+\item{fill}{fill for \code{\link{ggplot2}{geom_point}} if supported.}
 
 \item{...}{currently not used}
 }
