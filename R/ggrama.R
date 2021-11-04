@@ -10,7 +10,7 @@
 #' @param shape Shape for \code{\link{ggplot2}{geom_point}}.
 #' @param size Size for \code{\link{ggplot2}{geom_point}}.
 #' @param fill fill for \code{\link{ggplot2}{geom_point}} if supported.
-#' @param ... curently not used
+#' @param ... currently not used
 #'
 #' @return A ggplot2 plot object
 #'
@@ -26,7 +26,8 @@
 #' # plot the proline Ramachandran diagram
 #' ggrama("2ADQ.pdb1.gz", type = "proline")
 #'
-#' @export
+#' @import ggplot2
+#' @export ggrama
 
 
 ggrama <- function(pdb,

@@ -39,7 +39,7 @@ ggrama(
 
 \item{fill}{fill for \code{\link{ggplot2}{geom_point}} if supported.}
 
-\item{...}{curently not used}
+\item{...}{currently not used}
 }
 \value{
 A ggplot2 plot object
