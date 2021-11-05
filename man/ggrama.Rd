@@ -19,6 +19,10 @@ ggrama(
   shape = 21,
   size = 2,
   fill = "#FFFFFF",
+  contour = FALSE,
+  contour.color = NA,
+  smooth = FALSE,
+  smoothing.param = c("2", "3", "4"),
   ...
 )
 }
@@ -38,6 +42,14 @@ ggrama(
 \item{size}{Size for \code{\link{ggplot2}{geom_point}}.}
 
 \item{fill}{fill for \code{\link{ggplot2}{geom_point}} if supported.}
+
+\item{contour}{logical, should  \code{\link{ggplot2}{geom_contour_filled}} be used instead of \code{\link{ggplot2}{geom_tile}}}
+
+\item{contour.color}{numeric, the color of the contour if contour = TRUE.}
+
+\item{smooth}{logical, should the background grid be interpolated.}
+
+\item{smoothing.param}{character - "2", "3" or "4", the coefficient of interpolation. Higher values give smoother contours at the expense of computation time.}
 
 \item{...}{currently not used}
 }

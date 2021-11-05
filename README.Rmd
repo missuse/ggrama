@@ -42,11 +42,18 @@ ggrama("2ADQ.pdb1.gz") #general type the default
 ggrama("2ADQ.pdb1.gz", "pre.pro") #pre-proline, additional options are glycine and proline
 ```
 
+Or plot all four types in a grid
 
 ```{r example2, fig.width = 8,  fig.height = 8}
-#or plot all four types in a grid
 ggrama_all("2ADQ.pdb1.gz")
 
 ```
 
+Using contours:
 
+```{r example3, fig.width = 8,  fig.height = 8}
+ggrama_all("2ADQ.pdb1.gz",
+           contour = TRUE, #contours
+           smooth = TRUE, #interpolate background
+           smoothing.param = "4") #coefficient of interpolation per dimension
+```

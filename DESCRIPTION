@@ -16,5 +16,6 @@ Depends: R (>= 3.5)
 Imports: 
     ggplot2 (>= 3.1),
     cowplot (>= 1.0),
-    bio3d (>= 2.4)
+    bio3d (>= 2.4),
+    raster (>= 3.2)
 LazyData: true

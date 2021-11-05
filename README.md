@@ -38,9 +38,21 @@ ggrama("2ADQ.pdb1.gz", "pre.pro") #pre-proline, additional options are glycine a
 
 <img src="man/figures/README-example-2.png" width="50%" style="display: block; margin: auto;" />
 
+Or plot all four types in a grid
+
 ``` r
-#or plot all four types in a grid
 ggrama_all("2ADQ.pdb1.gz")
 ```
 
 <img src="man/figures/README-example2-1.png" width="100%" />
+
+Using contours:
+
+``` r
+ggrama_all("2ADQ.pdb1.gz",
+           contour = TRUE, #contours
+           smooth = TRUE, #interpolate background
+           smoothing.param = "4") #coefficient of interpolation per dimension
+```
+
+<img src="man/figures/README-example3-1.png" width="100%" />

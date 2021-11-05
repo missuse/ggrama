@@ -10,6 +10,10 @@
 #' @param shape Shape for \code{\link{ggplot2}{geom_point}}.
 #' @param size Size for \code{\link{ggplot2}{geom_point}}.
 #' @param fill fill for \code{\link{ggplot2}{geom_point}} if supported.
+#' @param contour logical, should  \code{\link{ggplot2}{geom_contour_filled}} be used instead of \code{\link{ggplot2}{geom_tile}}
+#' @param contour.color  numeric, the color of the contour if contour = TRUE.
+#' @param smooth logical, should the background grid be interpolated.
+#' @param smoothing.param character - "2", "3" or "4", the coefficient of interpolation. Higher values give smoother contours at the expense of computation time.
 #' @param ... currently not used
 #'
 #' @return A ggplot2 plot object
@@ -50,7 +54,20 @@ ggrama <- function(pdb,
                    shape = 21,
                    size = 2,
                    fill = '#FFFFFF',
+                   contour = FALSE,
+                   contour.color = NA,
+                   smooth = FALSE,
+                   smoothing.param = c("2", "3", "4"),
                    ...){
+  # function to check if valid colors are provided
+  areColors <- function(x) {
+    sapply(x, function(X) {
+      tryCatch(is.matrix(grDevices::col2rgb(X)),
+               error = function(e) FALSE)
+    })
+  }
+
+  # argument checking
   type <- match.arg(type)
   if(length(values) != (length(colors)+1)){
     stop("length of values should be the same length(colors) + 1")
@@ -67,17 +84,38 @@ ggrama <- function(pdb,
   if(is.unsorted(values)){
     stop("values vector should be sorted")
   }
-  areColors <- function(x) {
-    sapply(x, function(X) {
-      tryCatch(is.matrix(grDevices::col2rgb(X)),
-               error = function(e) FALSE)
-    })
-  }
+
 
   if (!all(areColors(colors))){
     stop("colors should be valid color names")
   }
 
+  if(length(contour) > 1){
+    stop("contour should be length 1")
+  }
+
+  if(!is.logical(contour)){
+    stop("contour should be TRUE or FALSE")
+  }
+
+  if(length(contour.color) > 1){
+    stop("contour.color should be length 1")
+  }
+
+  if (!areColors(contour.color)){
+    stop("contour.color should be valid color names")
+  }
+
+  if(length(smooth) > 1){
+    stop("smooth should be length 1")
+  }
+
+  if(!is.logical(smooth)){
+    stop("smooth should be TRUE or FALSE")
+  }
+  smoothing.param <- as.integer(match.arg(smoothing.param))
+
+  # torsion angle manipulation
   pdb <- bio3d::read.pdb(pdb)
   tor <- bio3d::torsion.pdb(pdb)
   tor <- as.data.frame(tor$tbl)
@@ -102,9 +140,30 @@ ggrama <- function(pdb,
   scatter_data <- scatter_data[!is.na(scatter_data$phi) & !is.na(scatter_data$psi),]
 
   dat <- ggrama::background_dist[[type]]
+  dat <- as.data.frame(dat)
 
+  if(smooth){
+    smoothing.param <- smoothing.param * 180
+    mat <- unstack(dat, value ~ phi)
+    r <- raster::raster(as.matrix(mat))
+    raster::extent(r) <- raster::extent(c(-179, 179, -179, 179))
+    s <- raster::raster(nrow = smoothing.param,
+                        ncol = smoothing.param)
+    raster::extent(s) <- raster::extent(c(-179, 179, -179, 179))
+    s <- raster::resample(r, s)
+    s <- raster::as.matrix(s)
+    dat <- as.data.frame(as.table(s))
+    colnames(dat ) <- c("phi", "psi", "value")
+    dat[,"phi"] <- rep(seq(-179, 179,
+                           length.out = smoothing.param),
+                       each = smoothing.param)
+    dat[,"psi"] <- rep(seq(-179, 179,
+                           length.out = smoothing.param),
+                       smoothing.param)
+  }
 
-  rama_tile <- ggplot2::ggplot(as.data.frame(dat)) +
+  if(!contour){
+  rama_tile <- ggplot2::ggplot(dat) +
     ggplot2::geom_tile(ggplot2::aes_string(x = "phi",
                                            y = "psi",
                                            fill = "value"),
@@ -124,6 +183,27 @@ ggrama <- function(pdb,
     ggplot2::theme(plot.margin = ggplot2::unit(c(0.3,0.3,0.3,0.3),"cm"),
                    panel.grid = ggplot2::element_blank(),
                    aspect.ratio = 1)
+  } else {
+    rama_tile <- ggplot2::ggplot(dat) +
+      geom_contour_filled(aes_string(x = "phi",
+                                     y = "psi",
+                                     z =  "value"),
+                          breaks = values,
+                          color = contour.color,
+                          show.legend = FALSE) +
+      scale_fill_manual(values = colors) +
+      ggplot2::ylab(expression(psi)) +
+      ggplot2::xlab(expression(phi)) +
+      ggplot2::theme_bw() +
+      ggplot2::scale_x_continuous(expand = c(0.0015, 0),
+                                  breaks = c(-180, -90, 0, 90, 180)) +
+      ggplot2::scale_y_continuous(expand = c(0.0015, 0),
+                                  breaks = c(-180, -90, 0, 90, 180)) +
+      ggplot2::ggtitle(label = title) +
+      ggplot2::theme(plot.margin = ggplot2::unit(c(0.3,0.3,0.3,0.3),"cm"),
+                     panel.grid = ggplot2::element_blank(),
+                     aspect.ratio = 1)
+  }
 
 
     rama_tile +
