@@ -52,7 +52,7 @@ Using contours:
 ggrama_all("2ADQ.pdb1.gz",
            contour = TRUE, #contours
            smooth = TRUE, #interpolate background
-           smoothing.param = "4") #coefficient of interpolation per dimension
+           smoothing.param = "4") #coefficient of interpolation
 ```
 
 <img src="man/figures/README-example3-1.png" width="100%" />

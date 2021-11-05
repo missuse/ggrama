@@ -28,7 +28,7 @@ You can install the development version of ggrama:
 devtools::install_github("missuse/ggrama")
 ```
 
-## Example
+## Example  
 
 ```{r example, fig.width = 4,  fig.height = 4, out.width = "50%", fig.align = 'center'}
 library(ggrama)
@@ -55,5 +55,5 @@ Using contours:
 ggrama_all("2ADQ.pdb1.gz",
            contour = TRUE, #contours
            smooth = TRUE, #interpolate background
-           smoothing.param = "4") #coefficient of interpolation per dimension
+           smoothing.param = "4") #coefficient of interpolation
 ```

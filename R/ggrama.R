@@ -196,9 +196,11 @@ ggrama <- function(pdb,
       ggplot2::xlab(expression(phi)) +
       ggplot2::theme_bw() +
       ggplot2::scale_x_continuous(expand = c(0.0015, 0),
-                                  breaks = c(-180, -90, 0, 90, 180)) +
+                                  breaks = c(-180, -90, 0, 90, 180),
+                                  limits = c(-180, 180)) +
       ggplot2::scale_y_continuous(expand = c(0.0015, 0),
-                                  breaks = c(-180, -90, 0, 90, 180)) +
+                                  breaks = c(-180, -90, 0, 90, 180),
+                                  limits = c(-180, 180)) +
       ggplot2::ggtitle(label = title) +
       ggplot2::theme(plot.margin = ggplot2::unit(c(0.3,0.3,0.3,0.3),"cm"),
                      panel.grid = ggplot2::element_blank(),
