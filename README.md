@@ -55,4 +55,4 @@ ggrama_all("2ADQ.pdb1.gz",
            smoothing.param = "4") #coefficient of interpolation per dimension
 ```
 
-<img src="man/figures/README-example3-1.png" width="100%" />
+<img src="man/figures/README-example4-1.png" width="100%" />
