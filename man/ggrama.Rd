@@ -22,7 +22,6 @@ ggrama(
   contour = FALSE,
   contour.color = NA,
   smooth = FALSE,
-  smoothing.param = c("2", "3", "4"),
   ...
 )
 }
@@ -47,9 +46,7 @@ ggrama(
 
 \item{contour.color}{numeric, the color of the contour if contour = TRUE.}
 
-\item{smooth}{logical, should the background grid be interpolated.}
-
-\item{smoothing.param}{character - "2", "3" or "4", the coefficient of interpolation. Higher values give smoother contours at the expense of computation time.}
+\item{smooth}{logical, should the background grid be smoothed.}
 
 \item{...}{currently not used}
 }

@@ -51,9 +51,14 @@ ggrama_all("2ADQ.pdb1.gz")
 
 Using contours:
 
+```{r example3, fig.width = 8,  fig.height = 8}
+ggrama_all("2ADQ.pdb1.gz",
+           contour = TRUE) #contours
+```
+
+
 ```{r example4, fig.width = 8,  fig.height = 8}
 ggrama_all("2ADQ.pdb1.gz",
            contour = TRUE, #contours
-           smooth = TRUE, #interpolate background
-           smoothing.param = "4") #coefficient of interpolation per dimension
+           smooth = TRUE) #use smoothed background
 ```

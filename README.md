@@ -50,9 +50,15 @@ Using contours:
 
 ``` r
 ggrama_all("2ADQ.pdb1.gz",
+           contour = TRUE) #contours
+```
+
+<img src="man/figures/README-example3-1.png" width="100%" />
+
+``` r
+ggrama_all("2ADQ.pdb1.gz",
            contour = TRUE, #contours
-           smooth = TRUE, #interpolate background
-           smoothing.param = "4") #coefficient of interpolation per dimension
+           smooth = TRUE) #use smoothed background
 ```
 
 <img src="man/figures/README-example4-1.png" width="100%" />

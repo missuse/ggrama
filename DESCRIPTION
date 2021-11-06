@@ -17,5 +17,5 @@ Imports:
     ggplot2 (>= 3.1),
     cowplot (>= 1.0),
     bio3d (>= 2.4),
-    raster (>= 3.2)
+    stats (>= 3.5)
 LazyData: true

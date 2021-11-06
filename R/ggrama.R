@@ -12,8 +12,7 @@
 #' @param fill fill for \code{\link{ggplot2}{geom_point}} if supported.
 #' @param contour logical, should  \code{\link{ggplot2}{geom_contour_filled}} be used instead of \code{\link{ggplot2}{geom_tile}}
 #' @param contour.color  numeric, the color of the contour if contour = TRUE.
-#' @param smooth logical, should the background grid be interpolated.
-#' @param smoothing.param character - "2", "3" or "4", the coefficient of interpolation. Higher values give smoother contours at the expense of computation time.
+#' @param smooth logical, should the background grid be smoothed.
 #' @param ... currently not used
 #'
 #' @return A ggplot2 plot object
@@ -57,7 +56,6 @@ ggrama <- function(pdb,
                    contour = FALSE,
                    contour.color = NA,
                    smooth = FALSE,
-                   smoothing.param = c("2", "3", "4"),
                    ...){
   # function to check if valid colors are provided
   areColors <- function(x) {
@@ -67,8 +65,17 @@ ggrama <- function(pdb,
     })
   }
 
+  #function to 1D linear resize matrix
+  resize_mat_spline <- function(img, new_width, new_height) {
+    new_img <- apply(img, 2, function(y) stats::approx(y, n = new_height)$y)
+    new_img <- t(apply(new_img, 1, function(y) stats::approx(y, n = new_width)$y))
+    new_img[new_img < 0] <- 0
+    return(new_img)
+  }
+
   # argument checking
   type <- match.arg(type)
+
   if(length(values) != (length(colors)+1)){
     stop("length of values should be the same length(colors) + 1")
   }
@@ -84,7 +91,6 @@ ggrama <- function(pdb,
   if(is.unsorted(values)){
     stop("values vector should be sorted")
   }
-
 
   if (!all(areColors(colors))){
     stop("colors should be valid color names")
@@ -113,7 +119,6 @@ ggrama <- function(pdb,
   if(!is.logical(smooth)){
     stop("smooth should be TRUE or FALSE")
   }
-  smoothing.param <- as.integer(match.arg(smoothing.param))
 
   # torsion angle manipulation
   pdb <- bio3d::read.pdb(pdb)
@@ -139,28 +144,23 @@ ggrama <- function(pdb,
   scatter_data <- scatter_data[which(!is.na(scatter_data[,type])),]
   scatter_data <- scatter_data[!is.na(scatter_data$phi) & !is.na(scatter_data$psi),]
 
-  dat <- ggrama::background_dist[[type]]
-  dat <- as.data.frame(dat)
-
   if(smooth){
-    smoothing.param <- smoothing.param * 180
+    dat <- ggrama::background_dist_smooth[[type]]
     mat <- unstack(dat, value ~ phi)
-    r <- raster::raster(as.matrix(mat))
-    raster::extent(r) <- raster::extent(c(-179, 179, -179, 179))
-    s <- raster::raster(nrow = smoothing.param,
-                        ncol = smoothing.param)
-    raster::extent(s) <- raster::extent(c(-179, 179, -179, 179))
-    s <- raster::resample(r, s)
-    s <- raster::as.matrix(s)
-    dat <- as.data.frame(as.table(s))
-    colnames(dat ) <- c("phi", "psi", "value")
+    mat <- resize_mat_spline(mat, 3*180, 3*180)
+    dat <- as.data.frame(as.table(mat))
+    colnames(dat) <- c("phi", "psi", "value")
     dat[,"phi"] <- rep(seq(-179, 179,
-                           length.out = smoothing.param),
-                       each = smoothing.param)
+                           length.out = 3*180),
+                       each = 3*180)
     dat[,"psi"] <- rep(seq(-179, 179,
-                           length.out = smoothing.param),
-                       smoothing.param)
+                           length.out = 3*180),
+                       3*180)
+  } else {
+    dat <- ggrama::background_dist[[type]]
+    dat <- as.data.frame(dat)
   }
+
 
   if(!contour){
   rama_tile <- ggplot2::ggplot(dat) +
