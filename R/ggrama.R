@@ -164,10 +164,11 @@ ggrama <- function(pdb,
 
   if(!contour){
   rama_tile <- ggplot2::ggplot(dat) +
-    ggplot2::geom_tile(ggplot2::aes_string(x = "phi",
+    ggplot2::geom_raster(ggplot2::aes_string(x = "phi",
                                            y = "psi",
                                            fill = "value"),
-                       show.legend = FALSE) +
+                       show.legend = FALSE,
+                       interpolate = TRUE) +
     ggplot2::scale_fill_gradientn(colours =  colors,
                                   values = values,
                                   limits = c(0, 1),
