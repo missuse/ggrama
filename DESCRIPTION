@@ -10,7 +10,7 @@ Authors@R:
 Description: Gieven a pdb file plot a Ramachandran diagram using ggplot2 graphics. Four types of Ramachandran diagrams are supported: general, glycine (symetric), pre-proline and proline.
 License: MIT + file LICENSE
 Encoding: UTF-8
-Roxygen: list(markdown = TRUE)
+Roxygen: list(markdown = TRUE) 
 RoxygenNote: 7.1.1
 Depends: R (>= 3.5)
 Imports: 
