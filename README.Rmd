@@ -16,6 +16,9 @@ knitr::opts_chunk$set(
 # ggrama
 
 <!-- badges: start -->
+[![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+[![DOI](https://zenodo.org/badge/424568391.svg)](https://zenodo.org/badge/latestdoi/424568391)
 <!-- badges: end -->
 
 The goal of ggrama is to make it easy to plot Ramachandran diagrams from a pdb file using ggplot2 graphics.
@@ -61,4 +64,22 @@ ggrama_all("2ADQ.pdb1.gz",
 ggrama_all("2ADQ.pdb1.gz",
            contour = TRUE, #contours
            smooth = TRUE) #use smoothed background
+```
+
+## Citation
+
+To cite `ggrama` in publications use:
+
+>>Milan Dragicevic (2021), ggrama: Ramachandran diagrams using ggplot2 graphics. url: https://github.com/missuse/ggrama. doi: 10.5281/zenodo.5660975
+
+A BibTeX entry for LaTeX users is
+
+```{bibtex}
+  @Manual{,
+    title = {ggrama: Ramachandran diagrams using ggplot2 graphics},
+    author = {Milan Dragicevic},
+    year = {2021},
+    url = {https://github.com/missuse/ggrama},
+    doi = {https://doi.org/10.5281/zenodo.5660975},
+  }
 ```

@@ -6,7 +6,8 @@ citEntry(
   author   = as.person("Milan Dragicevic"),
   year     = 2021,
   url      = "https://github.com/missuse/ggrama",
-  textVersion = paste("Milan Dragicevic (2021), ggrama: Ramachandran diagrams using ggplot2 graphics. url = https://github.com/missuse/ggrama")
+  doi      = "https://doi.org/10.5281/zenodo.5660975", 
+  textVersion = paste("Milan Dragicevic (2021), ggrama: Ramachandran diagrams using ggplot2 graphics. url: https://github.com/missuse/ggrama. doi: 10.5281/zenodo.5660975")
 )
 
 
