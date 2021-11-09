@@ -130,22 +130,15 @@ ggrama <- function(pdb,
   if(smooth){
     dat <- ggrama::background_dist_smooth[[type]]
     mat <- unstack(dat, value ~ phi)
-
-    mat <- akima::bicubic.grid(x = unique(dat$phi),
-                               y = unique(dat$psi),
-                               z = as.matrix(mat),
-                               nx = 540,
-                               ny = 540)
-
-    mat$z[mat$z < 0] <- 0
-
-    dat <- data.frame(value = matrix(mat$z, ncol = 1)[,1],
-                      phi =  rep(seq(-179, 179,
-                                     length.out = 540),
-                                 each = 540),
-                      psi = rep(seq(-179, 179,
-                                    length.out = 540),
-                                540))
+    mat <- resize_mat_linear(mat, 3*180, 3*180)
+    dat <- as.data.frame(as.table(mat))
+    colnames(dat) <- c("phi", "psi", "value")
+    dat[,"phi"] <- rep(seq(-179, 179,
+                           length.out = 3*180),
+                       each = 3*180)
+    dat[,"psi"] <- rep(seq(-179, 179,
+                           length.out = 3*180),
+                       3*180)
   } else {
     dat <- ggrama::background_dist[[type]]
     dat <- as.data.frame(dat)
