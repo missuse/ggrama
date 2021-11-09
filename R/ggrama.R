@@ -57,23 +57,6 @@ ggrama <- function(pdb,
                    contour.color = NA,
                    smooth = FALSE,
                    ...){
-  # function to check if valid colors are provided
-  areColors <- function(x) {
-    sapply(x, function(X) {
-      tryCatch(is.matrix(grDevices::col2rgb(X)),
-               error = function(e) FALSE)
-    })
-  }
-
-  #function to 1D linear resize matrix
-  resize_mat_spline <- function(img, new_width, new_height) {
-    new_img <- apply(img, 2, function(y) stats::approx(y, n = new_height)$y)
-    new_img <- t(apply(new_img, 1, function(y) stats::approx(y, n = new_width)$y))
-    new_img[new_img < 0] <- 0
-    return(new_img)
-  }
-
-  # argument checking
   type <- match.arg(type)
 
   if(length(values) != (length(colors)+1)){
@@ -147,7 +130,7 @@ ggrama <- function(pdb,
   if(smooth){
     dat <- ggrama::background_dist_smooth[[type]]
     mat <- unstack(dat, value ~ phi)
-    mat <- resize_mat_spline(mat, 3*180, 3*180)
+    mat <- resize_mat_linear(mat, 3*180, 3*180)
     dat <- as.data.frame(as.table(mat))
     colnames(dat) <- c("phi", "psi", "value")
     dat[,"phi"] <- rep(seq(-179, 179,
@@ -163,7 +146,7 @@ ggrama <- function(pdb,
 
 
   if(!contour){
-  rama_tile <- ggplot2::ggplot(dat) +
+  rama_plot <- ggplot2::ggplot(dat) +
     ggplot2::geom_raster(ggplot2::aes_string(x = "phi",
                                            y = "psi",
                                            fill = "value"),
@@ -172,48 +155,40 @@ ggrama <- function(pdb,
     ggplot2::scale_fill_gradientn(colours =  colors,
                                   values = values,
                                   limits = c(0, 1),
-                                  breaks = c(0, 0.5, 1)) +
-    ggplot2::ylab(expression(psi)) +
-    ggplot2::xlab(expression(phi)) +
-    ggplot2::theme_bw() +
-    ggplot2::scale_x_continuous(expand = c(0.0015, 0),
-                                breaks = c(-180, -90, 0, 90, 180)) +
-    ggplot2::scale_y_continuous(expand = c(0.0015, 0),
-                                breaks = c(-180, -90, 0, 90, 180)) +
-    ggplot2::ggtitle(label = title) +
-    ggplot2::theme(plot.margin = ggplot2::unit(c(0.3,0.3,0.3,0.3),"cm"),
-                   panel.grid = ggplot2::element_blank(),
-                   aspect.ratio = 1)
+                                  breaks = c(0, 0.5, 1))
+
   } else {
-    rama_tile <- ggplot2::ggplot(dat) +
+    rama_plot <- ggplot2::ggplot(dat) +
       geom_contour_filled(aes_string(x = "phi",
                                      y = "psi",
                                      z =  "value"),
                           breaks = values,
                           color = contour.color,
                           show.legend = FALSE) +
-      scale_fill_manual(values = colors) +
-      ggplot2::ylab(expression(psi)) +
-      ggplot2::xlab(expression(phi)) +
-      ggplot2::theme_bw() +
-      ggplot2::scale_x_continuous(expand = c(0.0015, 0),
-                                  breaks = c(-180, -90, 0, 90, 180),
-                                  limits = c(-180, 180)) +
-      ggplot2::scale_y_continuous(expand = c(0.0015, 0),
-                                  breaks = c(-180, -90, 0, 90, 180),
-                                  limits = c(-180, 180)) +
-      ggplot2::ggtitle(label = title) +
-      ggplot2::theme(plot.margin = ggplot2::unit(c(0.3,0.3,0.3,0.3),"cm"),
-                     panel.grid = ggplot2::element_blank(),
-                     aspect.ratio = 1)
+      scale_fill_manual(values = colors)
   }
 
+  rama_plot <- rama_plot +
+    ggplot2::ylab(expression(psi)) +
+    ggplot2::xlab(expression(phi)) +
+    ggplot2::theme_bw() +
+    ggplot2::scale_x_continuous(expand = c(0.0015, 0),
+                                breaks = c(-180, -90, 0, 90, 180),
+                                limits = c(-180, 180)) +
+    ggplot2::scale_y_continuous(expand = c(0.0015, 0),
+                                breaks = c(-180, -90, 0, 90, 180),
+                                limits = c(-180, 180)) +
+    ggplot2::ggtitle(label = title) +
+    ggplot2::theme(plot.margin = ggplot2::unit(c(0.3,0.3,0.3,0.3),"cm"),
+                   panel.grid = ggplot2::element_blank(),
+                   aspect.ratio = 1)
 
-    rama_tile +
-      ggplot2::geom_point(data = scatter_data,
-                          ggplot2::aes_string(x = "phi",
-                                              y = "psi"),
-                          shape = shape,
-                          size = size,
-                          fill = fill)
+
+  rama_plot +
+    ggplot2::geom_point(data = scatter_data,
+                        ggplot2::aes_string(x = "phi",
+                                            y = "psi"),
+                        shape = shape,
+                        size = size,
+                        fill = fill)
 }

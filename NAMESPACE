@@ -3,3 +3,5 @@
 export(ggrama)
 export(ggrama_all)
 import(ggplot2)
+import(grDevices)
+import(stats)

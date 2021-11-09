@@ -17,5 +17,6 @@ Imports:
     ggplot2 (>= 3.1),
     cowplot (>= 1.0),
     bio3d (>= 2.4),
-    stats (>= 3.5)
+    stats (>= 3.5),
+    grDevices (>= 3.5)
 LazyData: true
