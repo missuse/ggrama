@@ -74,18 +74,16 @@ ggrama_all("2ADQ.pdb1.gz",
 
 To cite `ggrama` in publications use:
 
-> Milan Dragicevic (2021), ggrama: Ramachandran diagrams using ggplot2
+> Milan Dragićević (2021), ggrama: Ramachandran diagrams using ggplot2
 > graphics. url: <https://github.com/missuse/ggrama>. doi:
 > 10.5281/zenodo.5660975
 
 A BibTeX entry for LaTeX users is
 
-``` bibtex
-  @Manual{,
-    title = {ggrama: Ramachandran diagrams using ggplot2 graphics},
-    author = {Milan Dragicevic},
-    year = {2021},
-    url = {https://github.com/missuse/ggrama},
-    doi = {https://doi.org/10.5281/zenodo.5660975},
-  }
-```
+      @Manual{,
+        title = {ggrama: Ramachandran diagrams using ggplot2 graphics},
+        author = {Milan Dragićević},
+        year = {2021},
+        url = {https://github.com/missuse/ggrama},
+        doi = {https://doi.org/10.5281/zenodo.5660975},
+      }
