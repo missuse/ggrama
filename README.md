@@ -70,6 +70,12 @@ ggrama_all("2ADQ.pdb1.gz",
 
 <img src="man/figures/README-example4-1.png" width="100%" />
 
+## Bug reports
+
+If you encounter undesired behavior in `ggrama` functions or have ideas
+how to improve the package please open an issue at:
+<https://github.com/missuse/ggrama/issues>
+
 ## Citation
 
 To cite `ggrama` in publications use:
