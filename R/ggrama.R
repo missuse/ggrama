@@ -122,6 +122,8 @@ ggrama <- function(pdb,
                                    ifelse(grepl("PRO", aa), "Proline", NA)),
                     pre.pro = with(tor,
                                    ifelse(grepl("PRO", aa.lead), "Pre-Pro", NA)))
+  #remove glycine from pre.pro
+  tor$pre.pro <- ifelse(is.na(tor$glycine), tor$pre.pro, NA)
 
   scatter_data <- tor[,c(type, "phi", "psi")]
   scatter_data <- scatter_data[which(!is.na(scatter_data[,type])),]
